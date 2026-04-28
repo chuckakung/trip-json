@@ -1,0 +1,19 @@
+{
+  "name": "trip-json",
+  "version": "0.1.0",
+  "description": "AI-curated, share-able trip guides — research a destination, enrich with Google Places data, and render as an interactive map.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chuckakung/trip-json.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "inject-token": "node scripts/inject-token.js",
+    "build-static": "node scripts/build-static.js",
+    "serve": "node scripts/inject-token.js && npx http-server trips -p 8888 -c-1",
+    "build": "node scripts/inject-token.js"
+  }
+}

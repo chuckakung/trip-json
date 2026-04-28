@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Guide</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      height: 100vh;
+      display: flex;
+    }
+
+    #sidebar {
+      width: var(--sidebar-width, 400px);
+      height: 100vh;
+      overflow-y: auto;
+      background: white;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    #map {
+      flex: 1;
+      height: 100vh;
+    }
+
+    .header {
+      padding: 24px;
+      background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .show-all-btn {
+      margin-top: 12px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Accommodation */
+    .accommodation-section {
+      padding: 16px 24px;
+      border-bottom: 2px solid var(--accent);
+      background: var(--active-bg, #fef9ee);
+    }
+
+    .accommodation-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .accommodation-card {
+      background: white;
+      border: 2px solid var(--accent);
+    }
+
+    /* Safety warning */
+    .safety-warning {
+      padding: 20px 24px;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+    }
+
+    .safety-warning h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+
+    .safety-warning ul {
+      list-style: none;
+      font-size: 13px;
+      color: #78350f;
+    }
+
+    .safety-warning li {
+      margin-bottom: 4px;
+    }
+
+    /* Category mode */
+    .category {
+      padding: 16px 24px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .category-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Itinerary mode */
+    .day-header {
+      padding: 12px 24px;
+      background: var(--gradient-from, #1a1a2e);
+      color: var(--gradient-to, #e94560);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .time-slot {
+      padding: 8px 24px 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Place cards */
+    .place-card {
+      padding: 16px;
+      margin-bottom: 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .itinerary-mode .place-card {
+      margin: 8px 24px 12px;
+    }
+
+    .place-card:hover {
+      background: #f3f4f6;
+      border-color: var(--accent);
+    }
+
+    .place-card.active {
+      background: var(--active-bg, #fef9ee);
+      border-color: var(--accent);
+    }
+
+    .place-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .place-rating {
+      font-size: 12px;
+      color: #f59e0b;
+      margin-bottom: 6px;
+    }
+
+    .place-description {
+      font-size: 13px;
+      color: #4b5563;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .place-tips {
+      font-size: 12px;
+      color: #059669;
+      background: #d1fae5;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .place-safety {
+      font-size: 12px;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 6px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .place-hours {
+      font-size: 11px;
+      color: #6b7280;
+      background: #f3f4f6;
+      padding: 6px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .place-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .place-links {
+      margin-top: 8px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .place-links a {
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .place-links a:hover {
+      text-decoration: underline;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Popups */
+    .mapboxgl-popup-content {
+      padding: 16px;
+      border-radius: 8px;
+      min-width: 280px;
+    }
+
+    .popup-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .popup-rating {
+      font-size: 13px;
+      color: #f59e0b;
+      margin-bottom: 8px;
+    }
+
+    .popup-description {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .popup-tips {
+      font-size: 12px;
+      color: #059669;
+      background: #d1fae5;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .popup-meta {
+      font-size: 12px;
+      color: #6b7280;
+      padding-top: 8px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .popup-meta a {
+      color: var(--accent);
+    }
+
+    /* Loading state */
+    #loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      font-size: 18px;
+      color: #6b7280;
+    }
+
+    #error {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      font-size: 18px;
+      color: #ef4444;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .disclaimer {
+      padding: 16px 24px;
+      font-size: 11px;
+      color: #6b7280;
+      line-height: 1.5;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      #sidebar {
+        width: 100% !important;
+        height: 50vh;
+      }
+
+      #map {
+        height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading trip...</div>
+  <div id="error"></div>
+
+  <div id="sidebar" style="display:none;">
+    <div class="header" id="header"></div>
+    <div id="safety-section"></div>
+    <div id="accommodation-section"></div>
+    <div id="places-list"></div>
+    <div class="disclaimer">
+      ⓘ AI-generated guide. Verify operating hours, trail conditions, and safety details with official sources before you go.
+    </div>
+  </div>
+
+  <div id="map" style="display:none;"></div>
+
+  <!-- _token.js sets window.MAPBOX_TOKEN; generated locally by `node scripts/inject-token.js` and at deploy time on Vercel. Gitignored. -->
+  <script src="_token.js"></script>
+
+  <script>
+    // Mapbox token: required. Set via window.MAPBOX_TOKEN (loaded from _token.js)
+    // or the URL param ?mapbox_token=...
+    const MAPBOX_TOKEN = window.MAPBOX_TOKEN
+      || new URLSearchParams(window.location.search).get('mapbox_token');
+
+    if (!MAPBOX_TOKEN) {
+      showError('Mapbox token required. Run `node scripts/inject-token.js` after setting NEXT_PUBLIC_MAPBOX_TOKEN in .env.local, or pass ?mapbox_token=... in the URL. Get a free token at https://account.mapbox.com');
+      throw new Error('Missing Mapbox token');
+    }
+
+    const tripName = new URLSearchParams(window.location.search).get('trip');
+
+    if (window.TRIP_DATA) {
+      render(window.TRIP_DATA);
+    } else if (tripName) {
+      loadTrip(tripName);
+    } else {
+      showError('No trip specified. Use ?trip=bangkok');
+    }
+
+    async function loadTrip(name) {
+      try {
+        const resp = await fetch(`./${encodeURIComponent(name)}.json`);
+        if (!resp.ok) throw new Error(`Trip "${name}" not found`);
+        const trip = await resp.json();
+        render(trip);
+      } catch (err) {
+        showError(err.message);
+      }
+    }
+
+    function showError(msg) {
+      document.getElementById('loading').style.display = 'none';
+      const el = document.getElementById('error');
+      el.style.display = 'flex';
+      el.textContent = msg;
+    }
+
+    // Escape arbitrary string for safe HTML interpolation.
+    function esc(value) {
+      if (value == null) return '';
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Allow http(s) and mailto URLs only — blocks javascript:, data:, vbscript:.
+    function safeUrl(value) {
+      if (value == null) return '';
+      const s = String(value).trim();
+      if (/^(https?:|mailto:)/i.test(s)) return esc(s);
+      return '';
+    }
+
+    // Allow only safe CSS color/gradient values for inline custom-property injection.
+    function safeColor(value) {
+      if (value == null) return '';
+      const s = String(value).trim();
+      if (/^(#[0-9a-fA-F]{3,8}|rgb\([^)]+\)|rgba\([^)]+\)|hsl\([^)]+\)|hsla\([^)]+\)|[a-zA-Z]+)$/.test(s)) return s;
+      return '';
+    }
+
+    function render(trip) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('sidebar').style.display = '';
+      document.getElementById('map').style.display = '';
+
+      // Apply theme (color values are validated)
+      const root = document.documentElement;
+      const theme = trip.theme;
+      root.style.setProperty('--gradient-from', safeColor(theme.gradientFrom));
+      root.style.setProperty('--gradient-to', safeColor(theme.gradientTo));
+      root.style.setProperty('--accent', safeColor(theme.accentColor));
+      if (theme.activeBg) root.style.setProperty('--active-bg', safeColor(theme.activeBg));
+      if (theme.sidebarWidth) {
+        const w = parseInt(theme.sidebarWidth, 10);
+        if (Number.isFinite(w) && w > 0 && w < 2000) root.style.setProperty('--sidebar-width', w + 'px');
+      }
+
+      document.title = trip.meta.title || 'Trip';
+
+      // Header
+      const header = document.getElementById('header');
+      header.innerHTML = `
+        <h1>${esc(trip.meta.flag)} ${esc(trip.meta.title)}</h1>
+        <p>${esc(trip.meta.subtitle)}</p>
+        <button class="show-all-btn" id="show-all">Show All Markers</button>
+      `;
+
+      // Safety warning
+      if (trip.safety) {
+        const safetyDiv = document.getElementById('safety-section');
+        safetyDiv.innerHTML = `
+          <div class="safety-warning">
+            <h3>${esc(trip.safety.title)}</h3>
+            <ul>${(trip.safety.warnings || []).map(w => `<li>${esc(w)}</li>`).join('')}</ul>
+          </div>
+        `;
+      }
+
+      // Accommodation
+      if (trip.accommodation) {
+        const accomDiv = document.getElementById('accommodation-section');
+        const a = trip.accommodation;
+        const emoji = esc(a.emoji || '🏨');
+        accomDiv.innerHTML = `
+          <div class="accommodation-section">
+            <div class="accommodation-label">${emoji} Accommodation</div>
+            <div class="place-card accommodation-card" id="hotel-card">
+              <div class="place-name">
+                <span>${emoji}</span>
+                <span>${esc(a.name)}</span>
+              </div>
+              ${a.description ? `<div class="place-description">${esc(a.description)}</div>` : ''}
+              ${a.tips ? `<div class="place-tips">💡 ${esc(a.tips)}</div>` : ''}
+              ${a.address ? `<div class="place-meta"><div class="meta-item">📍 ${esc(a.address)}</div></div>` : ''}
+            </div>
+          </div>
+        `;
+      }
+
+      // Initialize map
+      mapboxgl.accessToken = MAPBOX_TOKEN;
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: trip.map.center,
+        zoom: trip.map.zoom || 13
+      });
+
+      const bounds = new mapboxgl.LngLatBounds();
+
+      // Hotel marker
+      if (trip.accommodation) {
+        const a = trip.accommodation;
+        const hotelEl = document.createElement('div');
+        hotelEl.style.cssText = 'width:50px;height:50px;font-size:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+        hotelEl.textContent = a.emoji || '🏨';
+
+        const hotelPopup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+          <div class="popup-name">${esc(a.emoji || '🏨')} ${esc(a.name)}</div>
+          ${a.description ? `<div class="popup-description">${esc(a.description)}</div>` : ''}
+          ${a.address ? `<div class="popup-meta">📍 ${esc(a.address)}</div>` : ''}
+        `);
+
+        new mapboxgl.Marker(hotelEl)
+          .setLngLat(a.coordinates)
+          .setPopup(hotelPopup)
+          .addTo(map);
+
+        bounds.extend(a.coordinates);
+
+        document.getElementById('hotel-card')?.addEventListener('click', () => {
+          document.querySelectorAll('.place-card').forEach(c => c.classList.remove('active'));
+          document.getElementById('hotel-card').classList.add('active');
+          map.flyTo({ center: a.coordinates, zoom: 16, duration: 1000 });
+        });
+      }
+
+      // Determine sidebar mode
+      const hasItinerary = trip.itinerary && trip.itinerary.length > 0;
+      const placesList = document.getElementById('places-list');
+
+      if (hasItinerary) {
+        placesList.classList.add('itinerary-mode');
+        renderItinerary(trip, placesList, map, bounds);
+      } else {
+        renderCategories(trip, placesList, map, bounds);
+      }
+
+      // Fit bounds
+      trip.places.forEach(p => bounds.extend(p.coordinates));
+
+      map.on('load', () => {
+        map.fitBounds(bounds, { padding: 50 });
+
+        // Add place markers
+        trip.places.forEach(place => {
+          addMarker(map, place, theme);
+        });
+
+        // Route overlay
+        if (trip.route && trip.route.geometry) {
+          map.addSource('route', {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              properties: {},
+              geometry: trip.route.geometry
+            }
+          });
+
+          map.addLayer({
+            id: 'route-line',
+            type: 'line',
+            source: 'route',
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            paint: {
+              'line-color': theme.accentColor,
+              'line-width': 4,
+              'line-opacity': 0.7
+            }
+          });
+        }
+      });
+
+      // Show all button
+      document.getElementById('show-all').addEventListener('click', () => {
+        document.querySelectorAll('.place-card').forEach(c => c.classList.remove('active'));
+        map.fitBounds(bounds, { padding: 50, duration: 1000 });
+      });
+    }
+
+    function renderCategories(trip, container, map, bounds) {
+      const categorized = trip.places.reduce((acc, place) => {
+        if (!acc[place.category]) acc[place.category] = [];
+        acc[place.category].push(place);
+        return acc;
+      }, {});
+
+      Object.entries(categorized).forEach(([category, places]) => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category';
+
+        const title = document.createElement('div');
+        title.className = 'category-title';
+        title.textContent = category;
+        categoryDiv.appendChild(title);
+
+        places.forEach(place => {
+          categoryDiv.appendChild(createPlaceCard(place, map));
+        });
+
+        container.appendChild(categoryDiv);
+      });
+    }
+
+    function renderItinerary(trip, container, map, bounds) {
+      // Build a lookup from place name to place data
+      const placeLookup = {};
+      trip.places.forEach(p => { placeLookup[p.name] = p; });
+
+      trip.itinerary.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'day-header';
+        dayHeader.textContent = day.day;
+        container.appendChild(dayHeader);
+
+        day.slots.forEach(slot => {
+          const timeSlot = document.createElement('div');
+          timeSlot.className = 'time-slot';
+          timeSlot.textContent = slot.time;
+          container.appendChild(timeSlot);
+
+          slot.placeNames.forEach(placeName => {
+            const place = placeLookup[placeName];
+            if (place) {
+              container.appendChild(createPlaceCard(place, map));
+            }
+          });
+        });
+      });
+    }
+
+    function createPlaceCard(place, map) {
+      const card = document.createElement('div');
+      card.className = 'place-card';
+
+      let ratingHtml = '';
+      if (place.googleRating) {
+        const stars = '★'.repeat(Math.max(0, Math.min(5, Math.round(Number(place.googleRating) || 0))));
+        const rating = esc(place.googleRating);
+        const count = place.googleRatingCount != null ? esc(Number(place.googleRatingCount).toLocaleString()) : '';
+        ratingHtml = `<div class="place-rating">${stars} ${rating}${count ? ` (${count} reviews)` : ''}</div>`;
+      }
+
+      let hoursHtml = '';
+      if (place.hours) {
+        hoursHtml = `<div class="place-hours">🕐 ${esc(place.hours)}</div>`;
+      }
+
+      let safetyHtml = '';
+      if (place.safetyNote) {
+        safetyHtml = `<div class="place-safety">🛡️ ${esc(place.safetyNote)}</div>`;
+      }
+
+      let metaHtml = '';
+      const metaItems = [];
+      if (place.priceLevel) metaItems.push(`<div class="meta-item">💰 ${esc(place.priceLevel)}</div>`);
+      if (place.estimatedTime) metaItems.push(`<div class="meta-item">⏱️ ${esc(place.estimatedTime)}</div>`);
+      if (metaItems.length) metaHtml = `<div class="place-meta">${metaItems.join('')}</div>`;
+
+      let linksHtml = '';
+      const links = [];
+      const mapsUrl = safeUrl(place.googleMapsUrl);
+      const siteUrl = safeUrl(place.website);
+      if (mapsUrl) links.push(`<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>`);
+      if (siteUrl) links.push(`<a href="${siteUrl}" target="_blank" rel="noopener noreferrer">🌐 Website</a>`);
+      if (links.length) linksHtml = `<div class="place-links">${links.join('')}</div>`;
+
+      card.innerHTML = `
+        <div class="place-name">
+          <span>${esc(place.emoji)}</span>
+          <span>${esc(place.name)}</span>
+        </div>
+        ${ratingHtml}
+        <div class="place-description">${esc(place.description)}</div>
+        ${place.tips ? `<div class="place-tips">💡 ${esc(place.tips)}</div>` : ''}
+        ${safetyHtml}
+        ${hoursHtml}
+        ${metaHtml}
+        ${linksHtml}
+      `;
+
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.place-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        map.flyTo({ center: place.coordinates, zoom: 16, duration: 1000 });
+      });
+
+      return card;
+    }
+
+    function addMarker(map, place, theme) {
+      const el = document.createElement('div');
+      el.style.cssText = 'width:40px;height:40px;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))';
+      el.textContent = place.emoji;
+
+      let popupRating = '';
+      if (place.googleRating) {
+        const stars = '★'.repeat(Math.max(0, Math.min(5, Math.round(Number(place.googleRating) || 0))));
+        const rating = esc(place.googleRating);
+        const count = place.googleRatingCount != null ? esc(Number(place.googleRatingCount).toLocaleString()) : '';
+        popupRating = `<div class="popup-rating">${stars} ${rating}${count ? ` (${count})` : ''}</div>`;
+      }
+
+      const mapsUrl = safeUrl(place.googleMapsUrl);
+
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+        <div class="popup-name">${esc(place.emoji)} ${esc(place.name)}</div>
+        ${popupRating}
+        <div class="popup-description">${esc(place.description)}</div>
+        ${place.tips ? `<div class="popup-tips">💡 ${esc(place.tips)}</div>` : ''}
+        <div class="popup-meta">
+          ${place.priceLevel ? '💰 ' + esc(place.priceLevel) : ''}${place.estimatedTime ? ' | ⏱️ ' + esc(place.estimatedTime) : ''}
+          ${mapsUrl ? `<br><a href="${mapsUrl}" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>` : ''}
+        </div>
+      `);
+
+      new mapboxgl.Marker(el)
+        .setLngLat(place.coordinates)
+        .setPopup(popup)
+        .addTo(map);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.env.local
+.vercel
+node_modules
+scripts/find-*-places.js
+trips/*.html
+!trips/renderer.html
+trips/_token.js

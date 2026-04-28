@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "title": "Bangkok Guide",
+    "subtitle": "21 must-visit places near Four Seasons Bangkok",
+    "flag": "🇹🇭"
+  },
+  "map": {
+    "center": [100.505, 13.735],
+    "zoom": 13
+  },
+  "theme": {
+    "gradientFrom": "#f39c12",
+    "gradientTo": "#e74c3c",
+    "accentColor": "#f39c12",
+    "activeBg": "#fef9ee"
+  },
+  "accommodation": {
+    "name": "Four Seasons Hotel Bangkok",
+    "coordinates": [100.5097, 13.7080],
+    "address": "300/1 Charoen Krung Road, Sathon",
+    "emoji": "🏨",
+    "description": "Riverside luxury hotel on the Chao Phraya River with private boat shuttle",
+    "tips": "Free shuttle boat to BTS Saphan Taksin. Multiple restaurants on-site. Beautiful riverside pool and spa. Request a river-view room."
+  },
+  "safety": null,
+  "route": null,
+  "itinerary": null,
+  "places": [
+    {
+      "name": "Wat Arun (Temple of Dawn)",
+      "coordinates": [100.4889, 13.7437],
+      "category": "Temple/Landmark",
+      "emoji": "🛕",
+      "description": "Stunning riverside temple with iconic spire covered in colourful porcelain",
+      "tips": "Go at sunrise or sunset for best photos. Cross the river by boat. Dress modestly.",
+      "priceLevel": "$",
+      "estimatedTime": "1-1.5 hours"
+    },
+    {
+      "name": "Wat Pho (Reclining Buddha)",
+      "coordinates": [100.4933, 13.7465],
+      "category": "Temple/Landmark",
+      "emoji": "🛕",
+      "description": "46-metre gold reclining Buddha and Thailand's oldest traditional massage school",
+      "tips": "Get a traditional Thai massage here ($10-15 for 30 min). Go early to beat crowds.",
+      "priceLevel": "$",
+      "estimatedTime": "1.5-2 hours"
+    },
+    {
+      "name": "Grand Palace",
+      "coordinates": [100.4914, 13.7500],
+      "category": "Temple/Landmark",
+      "emoji": "👑",
+      "description": "Dazzling royal palace complex with the sacred Emerald Buddha",
+      "tips": "Strict dress code (long pants, covered shoulders). Go at 8:30am opening. No shorts!",
+      "priceLevel": "$$",
+      "estimatedTime": "2-3 hours"
+    },
+    {
+      "name": "Wat Saket (Golden Mount)",
+      "coordinates": [100.5065, 13.7536],
+      "category": "Temple/Landmark",
+      "emoji": "🏔️",
+      "description": "Hilltop temple with 360-degree panoramic views of old Bangkok",
+      "tips": "Climb 344 steps. Best at sunset. Less crowded than the big-name temples.",
+      "priceLevel": "$",
+      "estimatedTime": "1 hour"
+    },
+    {
+      "name": "Jay Fai",
+      "coordinates": [100.5056, 13.7525],
+      "category": "Restaurant",
+      "emoji": "🦀",
+      "description": "Legendary street food stall with a Michelin star - famous for crab omelette",
+      "tips": "Queue early (before 2pm) or you won't get in. Cash only.",
+      "priceLevel": "$$$",
+      "estimatedTime": "1.5-2 hours"
+    },
+    {
+      "name": "Nahm (COMO Metropolitan)",
+      "coordinates": [100.5280, 13.7225],
+      "category": "Fine Dining",
+      "emoji": "🍽️",
+      "description": "World-renowned Thai fine dining - complex, authentic royal Thai cuisine",
+      "tips": "Reserve ahead. Try the set menu for full range of flavours.",
+      "priceLevel": "$$$$",
+      "estimatedTime": "2 hours"
+    },
+    {
+      "name": "Pad Thai Thip Samai",
+      "coordinates": [100.5050, 13.7530],
+      "category": "Street Food",
+      "emoji": "🍜",
+      "description": "Bangkok's most famous pad thai - cooked in a wok wrapped in egg",
+      "tips": "Order the \"superb\" pad thai wrapped in egg. Open evenings only (5pm-2am).",
+      "priceLevel": "$",
+      "estimatedTime": "45 min"
+    },
+    {
+      "name": "Or Tor Kor Market",
+      "coordinates": [100.5502, 13.7999],
+      "category": "Market/Food",
+      "emoji": "🥭",
+      "description": "Bangkok's finest fresh market - tropical fruits, prepared Thai food",
+      "tips": "Try mango sticky rice, som tam, seasonal fruits. Near Chatuchak.",
+      "priceLevel": "$",
+      "estimatedTime": "1-1.5 hours"
+    },
+    {
+      "name": "Baan Ice",
+      "coordinates": [100.5135, 13.7280],
+      "category": "Restaurant",
+      "emoji": "🍛",
+      "description": "Home-style southern Thai food - fiery, bold, deeply flavourful",
+      "tips": "Try the crab curry and dry curry. Very spicy! Michelin Bib Gourmand.",
+      "priceLevel": "$$",
+      "estimatedTime": "1 hour"
+    },
+    {
+      "name": "Charoen Saeng Silom",
+      "coordinates": [100.5270, 13.7260],
+      "category": "Street Food",
+      "emoji": "🍗",
+      "description": "Legendary chicken rice (khao man gai) - Bangkok's best comfort food",
+      "tips": "Simple but perfect. Chicken rice with soup on the side. Under $2.",
+      "priceLevel": "$",
+      "estimatedTime": "30 min"
+    },
+    {
+      "name": "Chatuchak Weekend Market",
+      "coordinates": [100.5509, 13.7999],
+      "category": "Market/Shopping",
+      "emoji": "🛍️",
+      "description": "World's largest outdoor market - 15,000+ stalls over 35 acres",
+      "tips": "Saturday & Sunday only. Go early (9am) to beat heat. Bring cash.",
+      "priceLevel": "Varies",
+      "estimatedTime": "3-4 hours"
+    },
+    {
+      "name": "Asiatique The Riverfront",
+      "coordinates": [100.5075, 13.7020],
+      "category": "Market/Entertainment",
+      "emoji": "🎡",
+      "description": "Night market and entertainment complex on the river with Ferris wheel",
+      "tips": "Free shuttle boat from Saphan Taksin BTS. Opens 4pm.",
+      "priceLevel": "Varies",
+      "estimatedTime": "2-3 hours"
+    },
+    {
+      "name": "Chinatown (Yaowarat Road)",
+      "coordinates": [100.5093, 13.7390],
+      "category": "Neighbourhood/Food",
+      "emoji": "🏮",
+      "description": "Vibrant Chinatown that transforms into a street food paradise at night",
+      "tips": "Best after 6pm. Try grilled seafood, bird's nest soup, mango sticky rice.",
+      "priceLevel": "$",
+      "estimatedTime": "2-3 hours"
+    },
+    {
+      "name": "Floating Markets (Damnoen Saduak)",
+      "coordinates": [99.9575, 13.5183],
+      "category": "Day Trip",
+      "emoji": "🛶",
+      "description": "Iconic floating market where vendors sell from wooden boats",
+      "tips": "Leave Bangkok by 7am (1.5hr drive). Combine with Maeklong Railway Market.",
+      "priceLevel": "$$",
+      "estimatedTime": "4-5 hours"
+    },
+    {
+      "name": "Maeklong Railway Market",
+      "coordinates": [99.9997, 13.4097],
+      "category": "Day Trip",
+      "emoji": "🚂",
+      "description": "Market on active train tracks - vendors pull back awnings as train passes!",
+      "tips": "Train comes ~4 times daily. Check schedule.",
+      "priceLevel": "$",
+      "estimatedTime": "1-2 hours"
+    },
+    {
+      "name": "Ayutthaya Historical Park",
+      "coordinates": [100.5567, 14.3560],
+      "category": "Day Trip",
+      "emoji": "🏛️",
+      "description": "UNESCO World Heritage ruins of the ancient Siamese capital",
+      "tips": "Train (1.5hr) or hire a driver. Rent a bicycle to explore. Full day.",
+      "priceLevel": "$$",
+      "estimatedTime": "6-8 hours"
+    },
+    {
+      "name": "Jim Thompson House",
+      "coordinates": [100.5293, 13.7487],
+      "category": "Museum/Culture",
+      "emoji": "🏡",
+      "description": "Teak house museum of the American silk king who mysteriously vanished",
+      "tips": "Guided tours only (every 20 min). Great gift shop for Thai silk.",
+      "priceLevel": "$",
+      "estimatedTime": "1-1.5 hours"
+    },
+    {
+      "name": "Sky Bar (Lebua State Tower)",
+      "coordinates": [100.5143, 13.7217],
+      "category": "Bar/Nightlife",
+      "emoji": "🍸",
+      "description": "Famous rooftop bar from \"The Hangover Part II\" - 63 floors up",
+      "tips": "Smart casual (no shorts/sandals). Go for sunset. No reservations needed.",
+      "priceLevel": "$$$$",
+      "estimatedTime": "1-2 hours"
+    },
+    {
+      "name": "Bamboo Bar (Mandarin Oriental)",
+      "coordinates": [100.5135, 13.7240],
+      "category": "Bar/Nightlife",
+      "emoji": "🎷",
+      "description": "Legendary jazz bar since 1953 - one of Asia's most iconic bars",
+      "tips": "Live jazz nightly. Smart casual. Reservations recommended on weekends.",
+      "priceLevel": "$$$",
+      "estimatedTime": "1-2 hours"
+    },
+    {
+      "name": "Wat Pho Thai Massage",
+      "coordinates": [100.4933, 13.7465],
+      "category": "Wellness",
+      "emoji": "💆",
+      "description": "The birthplace of traditional Thai massage - authentic and affordable",
+      "tips": "Book the 1-hour Thai massage ($10-15). Inside Wat Pho temple complex.",
+      "priceLevel": "$",
+      "estimatedTime": "1 hour"
+    },
+    {
+      "name": "Chao Phraya River Boat",
+      "coordinates": [100.5143, 13.7187],
+      "category": "Experience",
+      "emoji": "🚤",
+      "description": "Explore Bangkok by boat along the \"River of Kings\"",
+      "tips": "Public Express Boat ($0.50) or hire private longtail. Hotel has shuttle boat.",
+      "priceLevel": "$",
+      "estimatedTime": "1-2 hours"
+    }
+  ]
+}

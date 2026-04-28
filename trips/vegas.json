@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "Vegas March Madness Trip 2026",
+    "subtitle": "March 26-27 | Palazzo at The Venetian",
+    "flag": "🎰"
+  },
+  "map": {
+    "center": [-115.165, 36.135],
+    "zoom": 13
+  },
+  "theme": {
+    "gradientFrom": "#1a1a2e",
+    "gradientTo": "#e94560",
+    "accentColor": "#e94560",
+    "activeBg": "#fef2f4"
+  },
+  "accommodation": {
+    "name": "The Palazzo at The Venetian",
+    "coordinates": [-115.1679583, 36.1240054],
+    "address": "3325 S Las Vegas Blvd, Las Vegas, NV 89109",
+    "emoji": "🏨",
+    "description": "Luxury all-suite hotel on the Strip - home base for the trip",
+    "tips": "Connected to Grand Canal Shoppes, Venetian, and multiple restaurants/bars.",
+    "googleRating": 4.6,
+    "googleRatingCount": 27970,
+    "googleMapsUrl": "https://maps.google.com/?cid=5003145005324108885",
+    "website": "https://www.venetianlasvegas.com/hotel/the-palazzo.html"
+  },
+  "safety": null,
+  "route": null,
+  "itinerary": [
+    {
+      "day": "Thursday, March 26",
+      "slots": [
+        { "time": "6:15 PM - Arrive Vegas", "placeNames": ["The Palazzo at The Venetian"] },
+        { "time": "7:30 PM - Dinner", "placeNames": ["Sumo Omakase"] },
+        { "time": "~9:30 PM - Speakeasy Crawl", "placeNames": ["Close Company", "1923 Prohibition Bar"] }
+      ]
+    },
+    {
+      "day": "Friday, March 27",
+      "slots": [
+        { "time": "~10 AM - Morning Coffee", "placeNames": ["Dandelion Chocolate"] },
+        { "time": "~11 AM - Brunch", "placeNames": ["Bouchon Bistro"] },
+        { "time": "~1 PM - Activity", "placeNames": ["Flight Club Las Vegas"] },
+        { "time": "3:00 PM - Sweet 16", "placeNames": ["Circa Resort & Casino"] },
+        { "time": "Late Night", "placeNames": ["Spearmint Rhino"] }
+      ]
+    }
+  ],
+  "places": [
+    {
+      "name": "The Palazzo at The Venetian",
+      "coordinates": [-115.1679583, 36.1240054],
+      "category": "Hotel",
+      "emoji": "🏨",
+      "description": "Luxury all-suite hotel on the Strip - home base for the trip",
+      "tips": "Connected to Grand Canal Shoppes, Venetian, and multiple restaurants/bars.",
+      "priceLevel": "$$$$",
+      "googleRating": 4.6,
+      "googleRatingCount": 27970,
+      "googleMapsUrl": "https://maps.google.com/?cid=5003145005324108885",
+      "website": "https://www.venetianlasvegas.com/hotel/the-palazzo.html"
+    },
+    {
+      "name": "Sumo Omakase",
+      "coordinates": [-115.20752549999999, 36.1229334],
+      "category": "Restaurant",
+      "emoji": "🍣",
+      "description": "Intimate omakase experience - 2 appetizers, 16 nigiri, hand roll, miso, dessert for $99",
+      "tips": "Off-strip (~15 min drive from Palazzo). Reservation at 7:30pm. BYOB not allowed. Great sake selection.",
+      "priceLevel": "$$$",
+      "estimatedTime": "1.5-2 hours",
+      "googleRating": 4.9,
+      "googleRatingCount": 11,
+      "googleMapsUrl": "https://maps.google.com/?cid=9233225642980046459",
+      "website": "http://sumoomakaselv.com/",
+      "hours": "Thu: 5:30 – 10:00 PM"
+    },
+    {
+      "name": "Close Company",
+      "coordinates": [-115.16852469999999, 36.1205928],
+      "category": "Bar",
+      "emoji": "🥃",
+      "description": "Craft cocktail speakeasy by the legendary Death & Co team - serious cocktails in an intimate setting",
+      "tips": "Inside Via Via Food Hall at the Venetian. No reservations needed. Try the rotating seasonal menu.",
+      "priceLevel": "$$$",
+      "estimatedTime": "1-1.5 hours",
+      "googleRating": 4.1,
+      "googleRatingCount": 17,
+      "googleMapsUrl": "https://maps.google.com/?cid=17272632271132228535",
+      "website": "https://www.venetianlasvegas.com/dining/nightlife-bars/close-company.html",
+      "hours": "Thu: 4:00 PM – 12:00 AM"
+    },
+    {
+      "name": "1923 Prohibition Bar",
+      "coordinates": [-115.16847489999999, 36.1220673],
+      "category": "Bar",
+      "emoji": "🎷",
+      "description": "1920s prohibition-era speakeasy with dim lighting, plush seating, and expertly crafted cocktails",
+      "tips": "Hidden in Grand Canal Shoppes. Cozy and dimly lit. Live entertainment Fri/Sat nights.",
+      "priceLevel": "$$$",
+      "estimatedTime": "1-1.5 hours",
+      "googleRating": 4.7,
+      "googleRatingCount": 147,
+      "googleMapsUrl": "https://maps.google.com/?cid=4441459564419897326",
+      "website": "https://www.1923lv.com/locations/venetian/",
+      "hours": "Thu: 4:00 PM – 12:00 AM"
+    },
+    {
+      "name": "Dandelion Chocolate",
+      "coordinates": [-115.1698871, 36.1213909],
+      "category": "Cafe",
+      "emoji": "☕",
+      "description": "Bean-to-bar craft chocolate maker with excellent coffee and hot chocolate",
+      "tips": "Opens 7am. Great morning coffee spot right in the Venetian. Try the mission hot chocolate.",
+      "priceLevel": "$$",
+      "estimatedTime": "30 min",
+      "googleRating": 4.8,
+      "googleRatingCount": 483,
+      "googleMapsUrl": "https://maps.google.com/?cid=12936902996914613019",
+      "website": "http://www.dandelionchocolate.com/",
+      "hours": "Fri: 7:00 AM – 10:00 PM"
+    },
+    {
+      "name": "Bouchon Bistro",
+      "coordinates": [-115.16923890000001, 36.1209181],
+      "category": "Restaurant",
+      "emoji": "🥐",
+      "description": "Thomas Keller French bistro - one of the best brunches in Vegas",
+      "tips": "Try the steak & eggs or the quiche. Pastry basket is incredible. Reservations recommended.",
+      "priceLevel": "$$$",
+      "estimatedTime": "1-1.5 hours",
+      "googleRating": 4.6,
+      "googleRatingCount": 3970,
+      "googleMapsUrl": "https://maps.google.com/?cid=173887870041921900",
+      "website": "https://www.thomaskeller.com/bouchonlasvegas",
+      "hours": "Check for brunch hours"
+    },
+    {
+      "name": "Flight Club Las Vegas",
+      "coordinates": [-115.1685857, 36.1248556],
+      "category": "Activity",
+      "emoji": "🎯",
+      "description": "Social darts experience with craft cocktails - competitive and fun group activity",
+      "tips": "In the Venetian. Book an oche (dart board) in advance. Drinks and food at your board. Opens 11:30am.",
+      "priceLevel": "$$",
+      "estimatedTime": "1-1.5 hours",
+      "googleRating": 4.7,
+      "googleRatingCount": 483,
+      "googleMapsUrl": "https://maps.google.com/?cid=8423602975662944902",
+      "website": "https://www.flightclubdartsusa.com/las-vegas",
+      "hours": "Fri: 11:30 AM – 1:00 AM"
+    },
+    {
+      "name": "Circa Resort & Casino",
+      "coordinates": [-115.14583839999999, 36.171837],
+      "category": "Entertainment",
+      "emoji": "🏟️",
+      "description": "Downtown's newest resort with the world's largest sportsbook - Stadium Swim and massive screens",
+      "tips": "About 15-20 min drive from the Strip. Stadium Swim is the multi-level pool amphitheater. Arrive by 2:30-3pm for Sweet 16 games.",
+      "priceLevel": "$$",
+      "estimatedTime": "4+ hours",
+      "googleRating": 4.5,
+      "googleRatingCount": 12991,
+      "googleMapsUrl": "https://maps.google.com/?cid=6006901985708148596",
+      "website": "https://www.circalasvegas.com/"
+    },
+    {
+      "name": "Spearmint Rhino",
+      "coordinates": [-115.17839560000002, 36.1289282],
+      "category": "Entertainment",
+      "emoji": "🦏",
+      "description": "The iconic Vegas gentlemen's club - open 24 hours",
+      "tips": "5 min from Palazzo on Highland Dr. Open 24hrs. Cover charge varies. Uber recommended.",
+      "priceLevel": "$$$",
+      "googleRating": 4.2,
+      "googleRatingCount": 1174,
+      "googleMapsUrl": "https://maps.google.com/?cid=8510802526997494598",
+      "website": "http://www.spearmintrhinolv.com/",
+      "hours": "Open 24 hours"
+    }
+  ]
+}

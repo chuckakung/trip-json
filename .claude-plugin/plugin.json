@@ -1,0 +1,11 @@
+{
+  "name": "trip-json",
+  "description": "AI-curated, share-able trip guides — research a destination, enrich with Google Places data, and render as an interactive map.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Charles Kung"
+  },
+  "homepage": "https://github.com/chuckakung/trip-json",
+  "repository": "https://github.com/chuckakung/trip-json",
+  "license": "MIT"
+}
