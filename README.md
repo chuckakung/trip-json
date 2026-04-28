@@ -11,15 +11,6 @@ Use [Claude Code](https://claude.ai/claude-code) to research a destination and g
 
 ## Quickstart
 
-Install as a Claude Code plugin:
-
-```
-/plugin marketplace add chuckakung/trip-json
-/plugin install trip-json@chuckakung
-```
-
-Or clone the repo:
-
 ```bash
 git clone https://github.com/chuckakung/trip-json.git
 cd trip-json
@@ -27,11 +18,13 @@ cp .env.example .env.local        # add your two API keys (see below)
 npm run serve                     # http://localhost:8888/renderer.html?trip=bangkok
 ```
 
-Then create a trip:
+The slash commands (`/research-trip`, `/static-trip`) are picked up automatically from `.claude/commands/` when you run [Claude Code](https://claude.ai/claude-code) inside the cloned repo. Then create a trip:
 
 ```
 /research-trip Tokyo, staying at Park Hyatt, luxury, foodie
 ```
+
+> _Plugin install (e.g. `/plugin install trip-json`) coming once this is approved on the [official Claude Code marketplace](https://claude.com/plugins). Until then, clone the repo._
 
 Options: `Style` (budget/mid/luxury/foodie/nightlife/family/adventure), `Dates` (e.g. "May 10–14" — triggers itinerary mode), `Interests` ("street food, jazz bars").
 
@@ -87,7 +80,7 @@ PRs welcome. Common shapes:
 - **New trip example**: add `trips/<city>.json`, link it in Demos.
 - **Renderer feature**: edit `trips/renderer.html`, exercise it in an example trip.
 
-Test locally as a plugin: `/plugin marketplace add /path/to/your/fork` → `/plugin install trip-json@your-fork`.
+Test changes by cloning your fork — `.claude/commands/` exposes the slash commands automatically when Claude Code runs inside the cloned directory.
 
 ## Disclaimer
 
